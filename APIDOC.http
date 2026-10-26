@@ -1,0 +1,123 @@
+#API call for creating admin
+###
+POST http://127.0.0.1:8000/accounts/admin/register/
+Content-Type: application/json
+
+{
+    "username":"admin1",
+    "email":"admin1@gmail.com",
+    "password":"admmin321",
+    "phone":"9878754678"
+}
+
+#API call for creating student
+###
+POST http://127.0.0.1:8000/accounts/student/register/
+Content-Type: application/json
+
+{
+    "username":"james",
+    "email":"james@gmail.com",
+    "password":"james123",
+    "phone":"7689654367"
+}
+
+#API call for creating a token
+###
+POST http://127.0.0.1:8000/accounts/token/ 
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admmin123"
+}
+
+# EXAMS ENDPOINTS
+
+#API call for listing all assessments of the logged in user
+###
+GET http://127.0.0.1:8000/exams/assessments/
+Accept: application/json
+Authorization: Token 80d672189d1c5d987aca5b58c4dd630c73aadc5a
+
+#API call for creating an assessment
+###
+POST  http://127.0.0.1:8000/exams/assessments/
+Content-Type: application/json
+Authorization: Token fbd3e1a1c967e8b69f4157de2b5845a9221561a1
+
+{
+  "title": "C Programming Final Assessment",
+  "batch": "Batch A",
+  "language": "c",
+  "exam_date": "2026-11-25",
+  "duration": "02:00",
+  "start_time": "09:30",
+  "status": "scheduled"
+}
+
+#API call for retrieving assessment
+###
+GET http://127.0.0.1:8000/exams/assessments/1/
+Accept: application/json
+Authorization: Token 80d672189d1c5d987aca5b58c4dd630c73aadc5a
+
+#API call for updating an assessment
+###
+PATCH http://127.0.0.1:8000/exams/assessments/6/
+Content-Type: application/json
+Authorization: Token fbd3e1a1c967e8b69f4157de2b5845a9221561a1
+
+{
+    "duration":"02:00:00"
+
+}
+
+#API call for deleting an assessment
+###
+DELETE http://127.0.0.1:8000/exams/assessments/1/
+Accept: application/json
+Authorization: Token 80d672189d1c5d987aca5b58c4dd630c73aadc5a
+
+#========QUESTION ENDPOINTS==========
+#API call for adding a question
+###
+POST http://127.0.0.1:8000/problem/assessment/2/question/
+Content-Type: application/json
+Authorization: Token 80d672189d1c5d987aca5b58c4dd630c73aadc5a
+
+{
+    "title":"WAP to add 2 numbers",
+    "description":"WAP to add 2 numbers without using sum()",
+    "score":2,
+    "sample_input":"num1=20,num2=30",
+    "sample_output":"output=50"
+
+}
+
+#API call for retrieving a question
+###
+GET http://127.0.0.1:8000/problem/question/1/
+Accept: application/json
+Authorization: Token 80d672189d1c5d987aca5b58c4dd630c73aadc5a
+
+#API call for updating a question
+###
+PUT http://127.0.0.1:8000/problem/question/1/
+Content-Type: application/json
+Authorization: Token 80d672189d1c5d987aca5b58c4dd630c73aadc5a
+
+{
+    "title":"WAP to add 2 numbers",
+    "description":"WAP to add 2 numbers without using sum()",
+    "score":3,
+    "sample_input":"num1=20,num2=30",
+    "sample_output":"output=50"
+
+}
+
+#API call for deleting a question
+###
+DELETE http://127.0.0.1:8000/problem/question/1/
+Accept: application/json
+Authorization: Token 80d672189d1c5d987aca5b58c4dd630c73aadc5a
