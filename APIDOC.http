@@ -58,7 +58,7 @@ Authorization: Token fbd3e1a1c967e8b69f4157de2b5845a9221561a1
 
 #API call for retrieving assessment
 ###
-GET http://127.0.0.1:8000/exams/assessments/1/
+GET http://127.0.0.1:8000/exams/assessments/2/
 Accept: application/json
 Authorization: Token 80d672189d1c5d987aca5b58c4dd630c73aadc5a
 
@@ -87,11 +87,11 @@ Content-Type: application/json
 Authorization: Token 80d672189d1c5d987aca5b58c4dd630c73aadc5a
 
 {
-    "title":"WAP to add 2 numbers",
-    "description":"WAP to add 2 numbers without using sum()",
-    "score":2,
-    "sample_input":"num1=20,num2=30",
-    "sample_output":"output=50"
+    "title":"WAP to subtract numbers",
+    "description":"WAP to subtract 2 numbers ",
+    "score":10,
+    "sample_input":"num1=50,num2=30",
+    "sample_output":"output=20"
 
 }
 

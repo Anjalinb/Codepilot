@@ -22,4 +22,5 @@ urlpatterns = [
     path('accounts/',include("accounts.urls")),
     path('exams/',include("exams.urls")),
     path('problem/',include("problem.urls")),
+    path('evaluation/',include("evaluation.urls")), #submission answers
 ]

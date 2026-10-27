@@ -14,20 +14,13 @@ class Question(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     created_by=models.ForeignKey(User,on_delete=models.CASCADE)
-    question_no=models.PositiveIntegerField(null=True)
+    question_no=models.PositiveIntegerField(default=0)
 
     def save(self,*args,**kwargs):
-        last_quest_obj=Question.objects.filter(assessment=self.assessment).last()
-        if last_quest_obj:
-            self.question_no=last_quest_obj.question_no+1
+
+        last_question_object=Question.objects.filter(assessment=self.assessment).last()
+        if last_question_object:
+            self.question_no=last_question_object.question_no + 1
         else:
             self.question_no=1
-
         return super().save(*args,**kwargs)
-
-
-
-
-
-
-
