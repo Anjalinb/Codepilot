@@ -28,8 +28,8 @@ POST http://127.0.0.1:8000/accounts/token/
 Content-Type: application/json
 
 {
-    "username":"admin",
-    "password":"admmin123"
+    "username":"james",
+    "password":"james123"
 }
 
 # EXAMS ENDPOINTS
@@ -121,3 +121,22 @@ Authorization: Token 80d672189d1c5d987aca5b58c4dd630c73aadc5a
 DELETE http://127.0.0.1:8000/problem/question/1/
 Accept: application/json
 Authorization: Token 80d672189d1c5d987aca5b58c4dd630c73aadc5a
+
+
+#=====================================SUBMISSION ENDPOINTS========================================
+#API call for creating a submission
+###
+POST http://127.0.0.1:8000/evaluation/assessment/2/submission/
+Content-Type:  application/json
+Authorization: Token 9ba6f41a455de3adfb8d4097dfe96e134e762a04
+
+#API call for adding answer to a submission
+###
+POST http://127.0.0.1:8000/evaluation/submission/4/answer/
+Content-Type: application/json
+Authorization: Token 9ba6f41a455de3adfb8d4097dfe96e134e762a04
+
+{
+    "question":1,
+    "answer_text":"print num1+num2"
+}
