@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'accounts',
     'exams',
     'problem',
-    'evaluation'
+    'evaluation',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [

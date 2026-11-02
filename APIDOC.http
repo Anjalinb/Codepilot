@@ -28,9 +28,30 @@ POST http://127.0.0.1:8000/accounts/token/
 Content-Type: application/json
 
 {
+    "username":"admin",
+    "password":"admmin123"
+}
+
+#API call for creating jwt token
+###
+POST http://127.0.0.1:8000/accounts/jwt/token/
+Content-Type: application/json
+
+{
     "username":"james",
     "password":"james123"
+
 }
+
+#API call for refreshing token
+###
+POST http://127.0.0.1:8000/accounts/jwt/token/refresh/
+Content-Type: application/json
+
+{
+    "refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5MzY4ODM0OCwiaWF0IjoxNzkzNjAxOTQ4LCJqdGkiOiI0OTIyOWUyNmQ5Njg0ZGMwYWI0NzUwOGY3NTgyYmM0MCIsInVzZXJfaWQiOiIyIn0.lFIHy5g7Z9dfxHlwWhj2wG_FIFQFsDhgX51f1b6F_Rw"
+}
+
 
 # EXAMS ENDPOINTS
 
@@ -126,9 +147,9 @@ Authorization: Token 80d672189d1c5d987aca5b58c4dd630c73aadc5a
 #=====================================SUBMISSION ENDPOINTS========================================
 #API call for creating a submission
 ###
-POST http://127.0.0.1:8000/evaluation/assessment/2/submission/
+POST http://127.0.0.1:8000/evaluation/assessment/4/submission/
 Content-Type:  application/json
-Authorization: Token 9ba6f41a455de3adfb8d4097dfe96e134e762a04
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzkzNjAyMjgwLCJpYXQiOjE3OTM2MDE5ODAsImp0aSI6Ijk3ZDJmM2RjNzMyMzRiMzk5ZWJhNTZjYzBiZjA5ZDQ1IiwidXNlcl9pZCI6IjIifQ.-yY801QBry3-lr3eKZOVIJiCPL883YU5M0LtAGlSedk
 
 #API call for adding answer to a submission
 ###
@@ -137,6 +158,25 @@ Content-Type: application/json
 Authorization: Token 9ba6f41a455de3adfb8d4097dfe96e134e762a04
 
 {
-    "question":1,
+    "question":3,
     "answer_text":"print num1+num2"
 }
+
+#API call for getting submission detail
+###
+GET http://127.0.0.1:8000/evaluation/submission/4/
+Accept: application/json
+Authorization: Token fbd3e1a1c967e8b69f4157de2b5845a9221561a1
+
+#API call for evaluating an answer
+###
+PATCH  http://127.0.0.1:8000/evaluation/answers/1/
+Content-Type: application/json
+Authorization: Token fbd3e1a1c967e8b69f4157de2b5845a9221561a1
+
+{
+    "marks_awarded":1000,
+    "feedback":"entire logic wrong"
+}
+
+

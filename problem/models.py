@@ -16,6 +16,8 @@ class Question(models.Model):
     created_by=models.ForeignKey(User,on_delete=models.CASCADE)
     question_no=models.PositiveIntegerField(default=0)
 
+
+
     def save(self,*args,**kwargs):
 
         last_question_object=Question.objects.filter(assessment=self.assessment).last()
@@ -24,3 +26,7 @@ class Question(models.Model):
         else:
             self.question_no=1
         return super().save(*args,**kwargs)
+
+
+    def __str__(self):
+        return self.title
