@@ -47,11 +47,13 @@ INSTALLED_APPS = [
     'problem',
     'evaluation',
     'rest_framework_simplejwt',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -87,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'code_pilot_db',        # The name of your database
         'USER': 'root',                # Your MySQL username
-        'PASSWORD': 'root',    # Your MySQL password
+        'PASSWORD': os.getenv('PASSWORD'),    # Your MySQL password
         'HOST': 'localhost',            # Use '127.0.0.1' or the server's IP address
         'PORT': '3306',                 # Default MySQL port
         
@@ -144,3 +146,18 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL="accounts.User"
+
+AUTHENTICATION_BACKENDS=["django.contrib.auth.backends.ModelBackend","accounts.backends.EmailBackend"]
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = 'anjalinbs@gmail.com'
+
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
+CORS_ALLOW_ALL_ORIGINS = True

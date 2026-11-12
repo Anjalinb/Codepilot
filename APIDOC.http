@@ -1,3 +1,5 @@
+#========================ACCOUNTS ENDPOINTS=======================================
+
 #API call for creating admin
 ###
 POST http://127.0.0.1:8000/accounts/admin/register/
@@ -16,10 +18,10 @@ POST http://127.0.0.1:8000/accounts/student/register/
 Content-Type: application/json
 
 {
-    "username":"james",
-    "email":"james@gmail.com",
-    "password":"james123",
-    "phone":"7689654367"
+    "username":"sanya",
+    "email":"sanya@gmail.com",
+    "password":"anjali123",
+    "phone":"6789654321"
 }
 
 #API call for creating a token
@@ -38,8 +40,8 @@ POST http://127.0.0.1:8000/accounts/jwt/token/
 Content-Type: application/json
 
 {
-    "username":"james",
-    "password":"james123"
+    "username":"anjali@gmail.com",
+    "password":"anjali123"
 
 }
 
@@ -49,8 +51,30 @@ POST http://127.0.0.1:8000/accounts/jwt/token/refresh/
 Content-Type: application/json
 
 {
-    "refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5MzY4ODM0OCwiaWF0IjoxNzkzNjAxOTQ4LCJqdGkiOiI0OTIyOWUyNmQ5Njg0ZGMwYWI0NzUwOGY3NTgyYmM0MCIsInVzZXJfaWQiOiIyIn0.lFIHy5g7Z9dfxHlwWhj2wG_FIFQFsDhgX51f1b6F_Rw"
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc5Mzc5NzUyOCwiaWF0IjoxNzkzNzExMTI4LCJqdGkiOiI3NjA5ZTdmYzk5YWU0YjgwYmI4ZjUyYWIyNDYxNDRmOCIsInVzZXJfaWQiOiI0In0.JJcLmV1MTKQehBzUqyrljpxff2vwjLxk7BVvP0KBpPI"
 }
+
+
+#API call for updating student profile
+###
+PUT http://127.0.0.1:8000/accounts/profile/complete/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzkzNzEwNzM4LCJpYXQiOjE3OTM3MTA0MzgsImp0aSI6IjE5MWMzNmVkZGY3YzRkMTlhNDk5YzFkNDhmYzNmOTUxIiwidXNlcl9pZCI6IjQifQ.64MwPUroigdwuVDvycyiJ72Hz9mu__X83VBPJSmM-4I
+
+{
+    "skills":"python.django,sql",
+    "qualification":"btech",
+    "passoutyear":"2026",
+    "linkedurl":"http://anjali.com",
+    "githuburl":"http://anjali.com"
+}
+
+#API call for getting the profile of the logged in user
+###
+GET http://127.0.0.1:8000/accounts/profile/detail/
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzkzNzExNDYxLCJpYXQiOjE3OTM3MTExNjEsImp0aSI6IjI5NmQ3YjNhZTBkYTRhZjg4YTRhNWU2MDgxNDNiM2ZhIiwidXNlcl9pZCI6IjQifQ.UeB6YUZEpMRtPrxVHsxRYh3JlboYwVw2JvbkVHAdCEY
+
 
 
 # EXAMS ENDPOINTS

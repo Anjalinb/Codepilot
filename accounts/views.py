@@ -3,9 +3,14 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework import permissions
 
-from accounts.models import User
-from accounts.serializers import UserSerializer
+from accounts.models import User,StudentProfile
+from accounts.serializers import UserSerializer,StudentProfileSerializer
+
+from evaluation.permissions import IsStudentUser
+
 
 class AdminRegisterView(APIView):
 
@@ -32,3 +37,37 @@ class StudentRegisterView(APIView):
             return Response(data=serializer_instance.data)
         else:
             return Response(data=serializer_instance.errors)
+
+class ProfileUpdateView(APIView):
+
+    authentication_classes=[JWTAuthentication]
+    permission_classes=[permissions.IsAuthenticated,IsStudentUser]
+
+    def put(self,request):
+
+        form_data=request.data
+
+        student_profile_obj=StudentProfile.objects.get(student=request.user)
+
+        serializer_instance=StudentProfileSerializer(data=form_data,instance=student_profile_obj)
+
+        if serializer_instance.is_valid():
+
+            serializer_instance.save()
+
+            return Response(data=serializer_instance.data)
+
+        else:
+
+            return Response(data=serializer_instance.errors)
+
+
+class ProfileDetailView(APIView):
+    authentication_classes=[JWTAuthentication]
+    permission_classes=[permissions.IsAuthenticated,IsStudentUser]
+
+    def get(self,request):
+
+        qs=StudentProfile.objects.get(student=request.user)
+        serializer_instance=StudentProfileSerializer(qs)
+        return Response(data=serializer_instance.data)
